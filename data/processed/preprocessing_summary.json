@@ -1,0 +1,65 @@
+{
+  "preprocessing_summary": {
+    "original_records": 6560698,
+    "processed_records": 6140206,
+    "records_removed": 420492,
+    "removal_percentage": 6.40925706380632,
+    "original_columns": 11,
+    "processed_columns": 31,
+    "columns_added": 20,
+    "original_memory_mb": 1713.0197763442993,
+    "processed_memory_mb": 5915.556520462036,
+    "memory_change_mb": 4202.536744117737
+  },
+  "validation_results": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [],
+    "summary": {
+      "total_records": 6140206,
+      "total_columns": 31,
+      "avg_quantity": 3.0972212198547133,
+      "total_quantity": 19017576.31747923,
+      "data_semana_range": "2022-01-01 00:00:00 to 2022-12-31 00:00:00",
+      "memory_usage_mb": 5915.556520462036
+    }
+  },
+  "data_shape": [
+    6140206,
+    31
+  ],
+  "columns": [
+    "pdv",
+    "produto",
+    "ano",
+    "semana",
+    "quantidade",
+    "data_semana",
+    "gross_value",
+    "net_value",
+    "gross_profit",
+    "discount",
+    "taxes",
+    "semana_ano",
+    "premise",
+    "categoria_pdv",
+    "zipcode",
+    "categoria",
+    "descricao",
+    "tipos",
+    "label",
+    "subcategoria",
+    "marca",
+    "fabricante",
+    "mes",
+    "trimestre",
+    "dia_semana",
+    "dia_mes",
+    "semana_mes",
+    "is_inicio_mes",
+    "is_fim_mes",
+    "is_weekend",
+    "mes_nome"
+  ],
+  "processing_timestamp": "2025-09-12T19:54:24.129396"
+}

@@ -1,0 +1,54 @@
+# Experiment Tracking Configuration
+
+experiment:
+  name: "hackathon-forecast-2025"
+  tracking_uri: "file:./mlruns"  # Local MLflow tracking
+  
+  # Metrics to track
+  primary_metrics:
+    - "wmape"  # Primary competition metric
+    - "mae"
+    - "rmse"
+    - "mape"
+  
+  secondary_metrics:
+    - "r2_score"
+    - "mean_absolute_percentage_error"
+    - "median_absolute_error"
+  
+  # Model registry settings
+  model_registry:
+    base_model_name: "hackathon-forecast-model"
+    stages:
+      - "Staging"
+      - "Production"
+      - "Archived"
+  
+  # Artifact logging settings
+  artifacts:
+    log_feature_importance: true
+    log_predictions: true
+    log_cv_results: true
+    log_model_plots: true
+    log_data_profiles: true
+  
+  # Auto-logging settings
+  auto_log:
+    sklearn: true
+    xgboost: true
+    lightgbm: true
+    matplotlib: true
+
+# Run naming conventions
+run_naming:
+  prefix: "forecast"
+  include_timestamp: true
+  include_model_type: true
+  include_features: false
+
+# Comparison settings
+comparison:
+  default_metrics: ["wmape", "mae", "rmse"]
+  pareto_optimization:
+    metrics: ["wmape", "training_time"]
+    minimize: [true, true]  # Minimize both WMAPE and training time
