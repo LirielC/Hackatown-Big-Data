@@ -1,0 +1,75 @@
+{
+  "strategy_name": "aggressive_xgboost",
+  "version": "v1.0.5",
+  "timestamp": "2025-09-11T16:36:16.540048",
+  "config_hash": "94fb79509b2c5dd5b549f56396a28e6f",
+  "git_commit": null,
+  "performance_metrics": {
+    "wmape": 0.6806307942603982,
+    "mae": 2.1041217683098883,
+    "rmse": 2.6522250092863704,
+    "mape": 1.0805474790073026
+  },
+  "model_parameters": {
+    "xgboost": {
+      "objective": "reg:squarederror",
+      "base_score": null,
+      "booster": null,
+      "callbacks": null,
+      "colsample_bylevel": null,
+      "colsample_bynode": null,
+      "colsample_bytree": 0.8,
+      "device": null,
+      "early_stopping_rounds": null,
+      "enable_categorical": false,
+      "eval_metric": "mae",
+      "feature_types": null,
+      "feature_weights": null,
+      "gamma": null,
+      "grow_policy": null,
+      "importance_type": null,
+      "interaction_constraints": null,
+      "learning_rate": 0.1,
+      "max_bin": null,
+      "max_cat_threshold": null,
+      "max_cat_to_onehot": null,
+      "max_delta_step": null,
+      "max_depth": 6,
+      "max_leaves": null,
+      "min_child_weight": null,
+      "missing": NaN,
+      "monotone_constraints": null,
+      "multi_strategy": null,
+      "n_estimators": 1000,
+      "n_jobs": -1,
+      "num_parallel_tree": null,
+      "random_state": 42,
+      "reg_alpha": null,
+      "reg_lambda": null,
+      "sampling_method": null,
+      "scale_pos_weight": null,
+      "subsample": 0.8,
+      "tree_method": null,
+      "validate_parameters": null,
+      "verbosity": null
+    }
+  },
+  "feature_importance": null,
+  "file_path": "submissions\\aggressive_xgboost\\submission_aggressive_xgboost_v1.0.5_20250911_163616.csv",
+  "validation_results": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": [
+      "Semanas extras: {6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52}"
+    ],
+    "stats": {
+      "total_records": 100000,
+      "unique_pdvs": 9734,
+      "unique_products": 3423,
+      "total_quantity": 309118.11756263336,
+      "avg_quantity": 3.0911811756263337,
+      "min_quantity": 1.3445820188703466,
+      "max_quantity": 6.799218477543801
+    }
+  }
+}

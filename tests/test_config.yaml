@@ -1,0 +1,66 @@
+# Configuração para testes
+test_settings:
+  # Configurações gerais
+  timeout_seconds: 300
+  max_memory_mb: 2048
+  temp_dir: "/tmp/hackathon_tests"
+  
+  # Configurações de performance
+  performance_thresholds:
+    data_ingestion_seconds: 5.0
+    preprocessing_seconds: 10.0
+    feature_engineering_seconds: 15.0
+    model_training_seconds: 30.0
+    prediction_seconds: 5.0
+    memory_usage_mb: 500
+  
+  # Configurações de cobertura
+  coverage:
+    minimum_percentage: 80
+    exclude_files:
+      - "*/tests/*"
+      - "*/test_*"
+      - "*/__init__.py"
+    
+  # Configurações de qualidade
+  code_quality:
+    max_function_lines: 50
+    max_class_lines: 500
+    max_file_lines: 1000
+    max_complexity: 10
+    
+  # Dados de teste
+  test_data:
+    sample_size: 1000
+    date_range:
+      start: "2022-01-01"
+      end: "2022-12-31"
+    pdv_count: 10
+    product_count: 50
+    
+  # Configurações de benchmark
+  benchmark:
+    iterations: 3
+    warmup_iterations: 1
+    memory_profiling: true
+    cpu_profiling: false
+    
+  # Configurações de integração
+  integration:
+    use_real_data: false
+    mock_external_services: true
+    test_database: "sqlite:///:memory:"
+    
+  # Configurações de validação
+  validation:
+    check_output_format: true
+    validate_predictions: true
+    check_data_integrity: true
+    verify_reproducibility: true
+    
+  # Configurações de relatório
+  reporting:
+    generate_html: true
+    generate_json: true
+    include_plots: false
+    detailed_errors: true

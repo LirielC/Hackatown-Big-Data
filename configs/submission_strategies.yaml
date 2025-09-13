@@ -1,0 +1,270 @@
+# Configurações de Estratégias de Submissão - Hackathon 2025
+
+# Estratégias disponíveis para submissão
+strategies:
+  # Estratégia 1: Ensemble Conservador
+  conservative_ensemble:
+    name: "Ensemble Conservador"
+    description: "Combinação balanceada de modelos com foco em estabilidade"
+    models:
+      xgboost:
+        enabled: true
+        weight: 0.35
+        hyperparameters:
+          n_estimators: 800
+          max_depth: 5
+          learning_rate: 0.08
+          subsample: 0.85
+          colsample_bytree: 0.85
+      lightgbm:
+        enabled: true
+        weight: 0.35
+        hyperparameters:
+          n_estimators: 800
+          max_depth: 5
+          learning_rate: 0.08
+          subsample: 0.85
+          colsample_bytree: 0.85
+      prophet:
+        enabled: true
+        weight: 0.30
+        hyperparameters:
+          seasonality_mode: "multiplicative"
+          changepoint_prior_scale: 0.05
+    features:
+      lag_periods: [1, 2, 4, 8]
+      rolling_windows: [4, 8, 12]
+      max_features: 40
+    post_processing:
+      smoothing_factor: 0.1
+      outlier_cap_multiplier: 2.5
+
+  # Estratégia 2: XGBoost Agressivo
+  aggressive_xgboost:
+    name: "XGBoost Agressivo"
+    description: "Modelo único XGBoost otimizado para performance máxima"
+    models:
+      xgboost:
+        enabled: true
+        weight: 1.0
+        hyperparameters:
+          n_estimators: 1500
+          max_depth: 8
+          learning_rate: 0.05
+          subsample: 0.8
+          colsample_bytree: 0.8
+          reg_alpha: 0.1
+          reg_lambda: 0.1
+      lightgbm:
+        enabled: false
+      prophet:
+        enabled: false
+    features:
+      lag_periods: [1, 2, 3, 4, 6, 8, 12]
+      rolling_windows: [3, 4, 6, 8, 12, 16]
+      max_features: 60
+    post_processing:
+      smoothing_factor: 0.05
+      outlier_cap_multiplier: 3.0
+
+  # Estratégia 3: Prophet Focado
+  prophet_focused:
+    name: "Prophet com Features Temporais"
+    description: "Foco em sazonalidade e tendências temporais"
+    models:
+      xgboost:
+        enabled: true
+        weight: 0.25
+        hyperparameters:
+          n_estimators: 500
+          max_depth: 4
+          learning_rate: 0.1
+      lightgbm:
+        enabled: false
+      prophet:
+        enabled: true
+        weight: 0.75
+        hyperparameters:
+          seasonality_mode: "additive"
+          yearly_seasonality: true
+          weekly_seasonality: true
+          changepoint_prior_scale: 0.1
+          seasonality_prior_scale: 15.0
+    features:
+      lag_periods: [1, 2, 4]
+      rolling_windows: [4, 8]
+      max_features: 25
+      temporal_focus: true
+    post_processing:
+      smoothing_factor: 0.15
+      outlier_cap_multiplier: 2.0
+
+  # Estratégia 4: LightGBM Otimizado
+  lightgbm_optimized:
+    name: "LightGBM com Feature Selection"
+    description: "LightGBM com seleção automática de features"
+    models:
+      xgboost:
+        enabled: false
+      lightgbm:
+        enabled: true
+        weight: 1.0
+        hyperparameters:
+          n_estimators: 1200
+          max_depth: 7
+          learning_rate: 0.06
+          subsample: 0.82
+          colsample_bytree: 0.82
+          reg_alpha: 0.05
+          reg_lambda: 0.05
+          min_child_samples: 20
+      prophet:
+        enabled: false
+    features:
+      lag_periods: [1, 2, 4, 8, 12]
+      rolling_windows: [4, 8, 12, 16]
+      max_features: 50
+      feature_selection_method: "importance"
+    post_processing:
+      smoothing_factor: 0.08
+      outlier_cap_multiplier: 2.8
+
+  # Estratégia 5: Ensemble Completo
+  full_ensemble:
+    name: "Ensemble Completo com Stacking"
+    description: "Todos os modelos com meta-learner"
+    models:
+      xgboost:
+        enabled: true
+        weight: 0.3
+        hyperparameters:
+          n_estimators: 1000
+          max_depth: 6
+          learning_rate: 0.07
+          subsample: 0.85
+          colsample_bytree: 0.85
+      lightgbm:
+        enabled: true
+        weight: 0.3
+        hyperparameters:
+          n_estimators: 1000
+          max_depth: 6
+          learning_rate: 0.07
+          subsample: 0.85
+          colsample_bytree: 0.85
+      prophet:
+        enabled: true
+        weight: 0.2
+        hyperparameters:
+          seasonality_mode: "multiplicative"
+          changepoint_prior_scale: 0.08
+    ensemble:
+      use_stacking: true
+      meta_learner: "ridge"
+      ridge_alpha: 0.5
+    features:
+      lag_periods: [1, 2, 4, 8]
+      rolling_windows: [4, 8, 12]
+      max_features: 45
+    post_processing:
+      smoothing_factor: 0.12
+      outlier_cap_multiplier: 2.3
+
+# Configurações de submissão
+submission:
+  # Diretório base para submissões
+  output_dir: "submissions"
+  
+  # Template de nome de arquivo
+  filename_template: "submission_{strategy}_{version}_{timestamp}"
+  
+  # Formatos de saída
+  formats:
+    - "csv"
+    - "parquet"
+  
+  # Validações automáticas
+  validation:
+    check_format: true
+    check_completeness: true
+    check_data_types: true
+    check_value_ranges: true
+  
+  # Backup automático
+  backup:
+    enabled: true
+    keep_versions: 10
+    compress: true
+
+# Configurações de comparação de performance
+performance_comparison:
+  # Métricas para comparação
+  metrics:
+    primary: "wmape"
+    secondary: ["mae", "rmse", "mape"]
+  
+  # Validação cruzada para comparação
+  validation:
+    method: "time_series_split"
+    n_splits: 5
+    test_size: 4
+  
+  # Relatórios automáticos
+  reports:
+    generate_html: true
+    generate_csv: true
+    include_plots: true
+    plot_formats: ["png", "svg"]
+  
+  # Baseline para comparação
+  baseline:
+    method: "historical_average"
+    periods: 12  # semanas
+
+# Configurações de execução rápida
+fast_execution:
+  # Otimizações para velocidade
+  optimizations:
+    use_cached_features: true
+    parallel_training: true
+    reduced_hyperparameter_search: true
+    sample_data_for_tuning: true
+  
+  # Configurações de cache
+  cache:
+    features_cache_dir: "cache/features"
+    models_cache_dir: "cache/models"
+    predictions_cache_dir: "cache/predictions"
+    ttl_hours: 24
+  
+  # Configurações de paralelização
+  parallel:
+    max_workers: null  # auto-detect
+    chunk_size: 5000
+    use_multiprocessing: true
+
+# Configurações de versionamento
+versioning:
+  # Sistema de versionamento automático
+  auto_increment: true
+  
+  # Formato de versão
+  version_format: "v{major}.{minor}.{patch}"
+  
+  # Metadados a serem salvos
+  metadata:
+    - "strategy_name"
+    - "timestamp"
+    - "git_commit"
+    - "config_hash"
+    - "performance_metrics"
+    - "model_parameters"
+    - "feature_importance"
+  
+  # Comparação automática com versões anteriores
+  auto_compare: true
+  
+  # Notificações de melhoria
+  notifications:
+    improvement_threshold: 0.01  # 1% de melhoria
+    send_alerts: false

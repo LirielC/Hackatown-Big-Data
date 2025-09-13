@@ -1,0 +1,29 @@
+{
+  "total_features": 152,
+  "feature_types": {
+    "temporal": 26,
+    "product": 84,
+    "store": 24,
+    "lag": 3,
+    "rolling": 2,
+    "growth": 0,
+    "original": 13
+  },
+  "missing_values": {
+    "label": "506948",
+    "produto_qty_std": "686",
+    "pdv_qty_std": "381",
+    "quantidade_lag_1": "1022937",
+    "quantidade_lag_2": "1637820",
+    "quantidade_lag_4": "2537273"
+  },
+  "data_types": {
+    "object": "14",
+    "int32": "86",
+    "UInt32": "2",
+    "float64": "36",
+    "datetime64[ms]": "1",
+    "Float64": "2",
+    "int64": "11"
+  }
+}

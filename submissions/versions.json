@@ -1,0 +1,12 @@
+{
+  "conservative_ensemble": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0
+  },
+  "aggressive_xgboost": {
+    "major": 1,
+    "minor": 0,
+    "patch": 5
+  }
+}
